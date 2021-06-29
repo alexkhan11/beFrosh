@@ -1,0 +1,374 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exploring Page</title>
+
+    <link rel="stylesheet" href="{% static 'mainApp/css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{% static 'mainApp/fontawesome-free-5.15.3-web/css/all.css' %}" />
+    <link rel="stylesheet" href="{% static 'mainApp/style.css' %}" />
+
+</head>
+
+<body>
+    <!-- NAVBAR SECTION -->
+    <nav class="navbar navbar-expand-lg navbar-light custom-color">
+        <div class="container-fluid">
+            <a href="" class="navbar-brand lg">beFrosh</a>
+            <h1>H1 ADDED FOR GIT</h1>
+
+            <div class="float-right">
+                <a href="/becomeSeller/" class="btn btn-outline-light rounded-pill "><span
+                        class="fa fa-shopping-bag mr-1"></span>Become a Seller
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- BANNER -->
+    <section class="">
+        <div class="jumbotron h-auto img-fluid " style="background-image: url('computer.jpg')">
+            <div class="container content-block">
+                <p class="display-4  font-weight-normal text-center ">
+                    What are You looking for!
+                </p>
+                <div class="col-md-6 offset-md-3 px-4 px-lg-5 my-5">
+                    <input type="text" name="" id="input" class="form-control rounded-pill text-center"
+                        placeholder="Search Anything Here..." />
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Category list -->
+
+    <section>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-4 col-lg-2 mb-2">
+                    <a href="" class="btn custom-btn rounded-pill col float-left text-truncate"><span
+                            class="fa fa-home mr-2"></span>House Hold
+                    </a>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-2">
+                    <a href="" class="btn custom-btn rounded-pill col float-left"><span
+                            class="fa fa-car mr-3"></span>Vehicles
+                    </a>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-2">
+                    <a href="" class="btn custom-btn rounded-pill col float-left text-truncate"><span
+                            class="fa fa-laptop mr-2"></span>Electronics
+                    </a>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-2">
+                    <a href="" class="btn custom-btn rounded-pill col float-left"><span
+                            class="fa fa-tshirt mr-3"></span>Cloths
+                    </a>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-2">
+                    <a href="" class="btn custom-btn rounded-pill col float-left"><span
+                            class="fa fa-tools mr-3"></span>Tools
+                    </a>
+                </div>
+
+            </div>
+            <div class="row justify-content-center mt-1">
+
+                <div class="col-md-4 col-lg-2 mb-2">
+                    <a href="" class="btn custom-btn  rounded-pill col float-left text-truncate"><span
+                            class="fa fa-couch mr-2"></span>Furnitures
+                    </a>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-2">
+                    <a href="" class="btn custom-btn rounded-pill col float-left text-truncate"><span
+                            class="fa fa-female mr-3 "></span>Fashion & Beauty
+                    </a>
+                </div>
+                <div class="col-md-4 col-lg-2 mb-2">
+                    <a href="" class="btn custom-btn rounded-pill col float-left"><span
+                            class="fa fa-book mr-3"></span>Books
+                    </a>
+                </div>
+            </div>
+            <hr class="hr" />
+        </div>
+    </section>
+
+    <!-- ITEMS FOR SALE -->
+    <section>
+        <div class="container">
+            <div class="float-right">
+                <a href="" class="btn btn-custom rounded-pill mt-2 pr-3 pl-3">Filter<span
+                        class="fa fa-bars ml-2"></span></a>
+            </div>
+            <br /><br /><br />
+
+            <div class="row">
+                <div class="col-md-6  col-lg-4 ">
+                    <div class="card mb-3 custom-card-style">
+                        <div class="card-img">
+                            <img src="computer.jpg" class="img-fluid card-img-top custom-img" alt="" />
+                        </div>
+                        <div class="card-body">
+                            <a href="" class="custom-link1">
+                                <h4 class="card-text">Keyboard and Phone for sale</h4>
+                                <small class="mb-4">Some descriptions...</small>
+                            </a>
+                            <h5 class="mt-4 custom-link1">Kabul-Afg</h5>
+                            <a href="" class="h6 custom-link">Sale by: Ahmad</a>
+                            <div class="">
+                                <a href="" class="float-left custom-link"><span
+                                        class="fa fa-download mr-2 mt-3"></span><small>Check it
+                                        later</small></a>
+                                <h5 class="float-right mt-3">100.00$</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6  col-lg-4 ">
+                    <div class="card mb-3 custom-card-style">
+                        <div class="card-img">
+                            <img src="computer.jpg" class="img-fluid card-img-top custom-img" alt="" />
+                        </div>
+                        <div class="card-body">
+                            <a href="" class=" custom-link1">
+                                <h4 class="card-text">Keyboard and Phone for sale</h4>
+                                <small class="mb-4">Some descriptions...</small>
+                            </a>
+                            <h5 class="mt-4 custom-link1">Kabul-Afg</h5>
+                            <a href="" class="h6 custom-link">Sale by: Ahmad</a>
+                            <div class="">
+                                <a href="" class="float-left custom-link"><span
+                                        class="fa fa-download mr-2 mt-3"></span><small>Check it
+                                        later</small></a>
+                                <h5 class="float-right mt-3">100.00$</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6  col-lg-4 ">
+                    <div class="card mb-3 custom-card-style">
+                        <div class="card-img">
+                            <img src="computer.jpg" class="img-fluid card-img-top custom-img" alt="" />
+                        </div>
+                        <div class="card-body">
+                            <a href="" class=" custom-link1">
+                                <h4 class="card-text">Keyboard and Phone for sale</h4>
+                                <small class="mb-4">Some descriptions...</small>
+                            </a>
+                            <h5 class="mt-4 custom-link1">Kabul-Afg</h5>
+                            <a href="" class="h6 custom-link">Sale by: Ahmad</a>
+                            <div class="">
+                                <a href="" class="float-left custom-link"><span
+                                        class="fa fa-download mr-2 mt-3"></span><small>Check it
+                                        later</small></a>
+                                <h5 class="float-right mt-3">100.00$</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6  col-lg-4 ">
+                    <div class="card mb-3 custom-card-style">
+                        <div class="card-img">
+                            <img src="computer.jpg" class="img-fluid card-img-top custom-img" alt="" />
+                        </div>
+                        <div class="card-body">
+                            <a href="" class=" custom-link1">
+                                <h4 class="card-text">Keyboard and Phone for sale</h4>
+                                <small class="mb-4">Some descriptions...</small>
+                            </a>
+                            <h5 class="mt-4 custom-link1">Kabul-Afg</h5>
+                            <a href="" class="h6 custom-link">Sale by: Ahmad</a>
+                            <div class="">
+                                <a href="" class="float-left custom-link"><span
+                                        class="fa fa-download mr-2 mt-3"></span><small>Check it
+                                        later</small></a>
+                                <h5 class="float-right mt-3">100.00$</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6  col-lg-4 ">
+                    <div class="card mb-3 custom-card-style">
+                        <div class="card-img">
+                            <img src="computer.jpg" class="img-fluid card-img-top custom-img" alt="" />
+                        </div>
+                        <div class="card-body">
+                            <a href="" class=" custom-link1">
+                                <h4 class="card-text">Keyboard and Phone for sale</h4>
+                                <small class="mb-4">Some descriptions...</small>
+                            </a>
+                            <h5 class="mt-4 custom-link1">Kabul-Afg</h5>
+                            <a href="" class="h6 custom-link">Sale by: Ahmad</a>
+                            <div class="">
+                                <a href="" class="float-left custom-link"><span
+                                        class="fa fa-download mr-2 mt-3"></span><small>Check it
+                                        later</small></a>
+                                <h5 class="float-right mt-3">100.00$</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6  col-lg-4 ">
+                    <div class="card mb-3 custom-card-style">
+                        <div class="card-img">
+                            <img src="computer.jpg" class="img-fluid card-img-top custom-img" alt="" />
+                        </div>
+                        <div class="card-body">
+                            <a href="" class=" custom-link1 custom-link1">
+                                <h4 class="card-text">Keyboard and Phone for sale</h4>
+                                <small class="mb-4">Some descriptions...</small>
+                            </a>
+                            <h5 class="mt-4 custom-link1 custom-link1">Kabul-Afg</h5>
+                            <a href="" class="h6 custom-link">Sale by: Ahmad</a>
+                            <div class="">
+                                <a href="" class="float-left custom-link"><span
+                                        class="fa fa-download mr-2 mt-3"></span><small>Check it
+                                        later</small></a>
+                                <h5 class="float-right mt-3">100.00$</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6  col-lg-4 ">
+                    <div class="card mb-3 custom-card-style">
+                        <div class="card-img">
+                            <img src="computer.jpg" class="img-fluid card-img-top custom-img" alt="" />
+                        </div>
+                        <div class="card-body">
+                            <a href="" class=" custom-link1">
+                                <h4 class="card-text">Keyboard and Phone for sale</h4>
+                                <small class="mb-4">Some descriptions...</small>
+                            </a>
+                            <h5 class="mt-4 custom-link1">Kabul-Afg</h5>
+                            <a href="" class="h6 custom-link">Sale by: Ahmad</a>
+                            <div class="">
+                                <a href="" class="float-left custom-link"><span
+                                        class="fa fa-download mr-2 mt-3"></span><small>Check it
+                                        later</small></a>
+                                <h5 class="float-right mt-3">100.00$</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6  col-lg-4 ">
+                    <div class="card mb-3 custom-card-style">
+                        <div class="card-img">
+                            <img src="computer.jpg" class="img-fluid card-img-top custom-img" alt="" />
+                        </div>
+                        <div class="card-body">
+                            <a href="" class=" custom-link1">
+                                <h4 class="card-text">Keyboard and Phone for sale</h4>
+                                <small class="mb-4">Some descriptions...</small>
+                            </a>
+                            <h5 class="mt-4 custom-link1">Kabul-Afg</h5>
+                            <a href="" class="h6 custom-link">Sale by: Ahmad</a>
+                            <div class="">
+                                <a href="" class="float-left custom-link"><span
+                                        class="fa fa-download mr-2 mt-3"></span><small>Check it
+                                        later</small></a>
+                                <h5 class="float-right mt-3">100.00$</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6  col-lg-4 ">
+                    <div class="card mb-3 custom-card-style">
+                        <div class="card-img">
+                            <img src="computer.jpg" class="img-fluid card-img-top custom-img" alt="" />
+                        </div>
+                        <div class="card-body">
+                            <a href="" class=" custom-link1">
+                                <h4 class="card-text">Keyboard and Phone for sale</h4>
+                                <small class="mb-4">Some descriptions...</small>
+                            </a>
+                            <h5 class="mt-4 custom-link1">Kabul-Afg</h5>
+                            <a href="" class="h6 custom-link">Sale by: Ahmad</a>
+                            <div class="">
+                                <a href="" class="float-left custom-link"><span
+                                        class="fa fa-download mr-2 mt-3"></span><small>Check it
+                                        later</small></a>
+                                <h5 class="float-right mt-3">100.00$</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="float-right">
+                <a href="" class="btn btn-custom rounded-pill mt-2 pr-3 pl-3">Next<span
+                        class="fa fa-arrow-circle-right ml-2"></span></a>
+            </div>
+        </div>
+    </section>
+    <br><br><br>
+
+    <!-- Footer -->
+    <footer>
+        <div class="custom-color">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 mt-5 custom-link ml-5">
+                        <ul class="list-unstyled">
+                            <li class="pb-3"><a href="#" class="text-white">House Hold</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Vehicles</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Electronics</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Cloths</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Tools</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Furnitures</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Fashion & Beauty</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Books</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-5 mt-5 custom-link ml-5">
+                        <ul class="list-unstyled">
+                            <li class="pb-3"><a href="#" class="text-white">About us</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Contact us</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Terms and Conditions</a></li>
+                            <li class="pb-3"><a href="#" class="text-white">Policies</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-white text-center footer-margin pb-2"><i class="fa fa-copyright mr-2"
+                            aria-hidden="true"></i>Copy
+                        right
+                        2021
+                        -beFrosh</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="{% static 'mainApp/js/jquery.js' %}"></script>
+    <script src="{% static 'mainApp/js/bootstrap.js' %}"></script>
+</body>
+
+</html>

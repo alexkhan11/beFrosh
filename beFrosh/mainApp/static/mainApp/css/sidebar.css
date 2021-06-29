@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  display: block;
+  color: rgb(255, 255, 255);
+  font-family: sans-serif;
+}
+
+.header {
+  height: 50px;
+  width: 100%;
+  background-color: rgb(5, 97, 97);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-area {
+  display: flex;
+  align-items: center;
+  margin-left: 6%;
+}
+
+.profile-header {
+  margin-right: 4%;
+}
+
+.home {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  /* background-color: black; */
+}
+
+.main {
+  background-color: #fff;
+  /* display: inline-block; */
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 23%;
+  height: 1080px;
+  margin-right: 0px;
+  /* background-color: rgb(5, 97, 97); */
+  /* background-color: red; */
+  transition: all 0.5s ease-in;
+}
+
+/* .buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20%;
+} */
+
+/* button {
+  background-color: darkcyan;
+  height: 40px;
+  width: 250px;
+  border-radius: 15px;
+  margin-bottom: 10%;
+  border: none;
+  font-size: 17px;
+  outline: none;
+  color: white;
+  font-family: sans-serif;
+} */
+
+/* .title-header {
+  margin-top: 0;
+} */
+
+/* humberger menu */
+.menu {
+  visibility: hidden;
+  margin-right: 20px;
+  user-select: none;
+}
+
+.menu:hover {
+  cursor: pointer;
+}
+
+/* media queries */
+@media only screen and (max-width: 610px) {
+  .sidebar {
+    width: 0;
+    font-size: 12px;
+  }
+
+
+
+
+
+  .menu {
+    /* display: inline-block; */
+    visibility: visible;
+  }
+}
+
+.sidebar-width-max {
+  width: 28%;
+}

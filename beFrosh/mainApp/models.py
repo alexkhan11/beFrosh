@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 
 class Seller (models.Model):
     photo =  models.ImageField(null=True)
-    phone = models.IntegerField()
-    phone_2 = models.IntegerField()
+    phone_no = models.IntegerField()
+    whatsapp_no = models.IntegerField(null=True)
     rating = models.FloatField()
     user_name = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.ForeignKey("Location", on_delete=CASCADE)
@@ -23,8 +23,7 @@ class Location (models.Model):
     province = models.CharField(max_length=128)
     district = models.CharField(max_length=128)
     region = models.CharField(max_length=128)
-    street = models.CharField(max_length=128)
-    house_no = models.IntegerField()
+    address_line = models.CharField(max_length=128)
 
 class Product (models.Model):
     title = models.CharField(null=False, max_length=128)

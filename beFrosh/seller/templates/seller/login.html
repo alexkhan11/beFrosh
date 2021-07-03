@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Add New Product</title>
+{% endblock title %} {% block files %} {% endblock files %} {% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-10 col-md-9">
+      <div class="card my-5 custom-login">
+        <div class="card-body p-5">
+          <div class="container">
+            <h1 class="text-center mb-5 custom-link1">
+              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </h1>
+            <div class="form-group">
+              <form action="">
+                <input
+                  class="form-control mb-4 rounded-pill text-center custom-input"
+                  type="text"
+                  placeholder="Username"
+                />
+
+                <input
+                  class="form-control rounded-pill text-center custom-input"
+                  type="password"
+                  name=""
+                  id=""
+                  placeholder="Password"
+                />
+
+                <div class="row mt-5 justify-content-center">
+                  <div class="col-sm-5 col-md-4 col-lg-4 col">
+                    <a
+                      href="/loginView/"
+                      class="btn btn-block rounded-pill custom-color text-black"
+                      >Login</a
+                    >
+                  </div>
+
+                  <div class="col-sm-5 col-md-4 col-lg-4 col">
+                    <a
+                      href="/register/"
+                      class="btn btn-block rounded-pill custom-color text-black"
+                      >Register</a
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

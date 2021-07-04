@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block title %}
 <title>Add New Product</title>
-{% endblock title %} {% block files %} {% endblock files %} {% block content %}
+{% endblock title %} {% block files %}
+<script src="{% static 'seller/js/auth.js' %}" defer></script>
+{% endblock files %} {% block content %}
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-xl-8 col-lg-10 col-md-9">
@@ -10,40 +12,42 @@
             <h1 class="text-center mb-5 custom-link1">
               <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
             </h1>
+    
+      <p id="login-error" style="color: red; text-align: center;"></p>
             <div class="form-group">
-              <form action="">
                 <input
+                id="username"
                   class="form-control mb-4 rounded-pill text-center custom-input"
                   type="text"
-                  placeholder="Username"
-                />
+                  placeholder="Username"                />
 
                 <input
                   class="form-control rounded-pill text-center custom-input"
                   type="password"
                   name=""
-                  id=""
+                  id="password"
                   placeholder="Password"
                 />
 
                 <div class="row mt-5 justify-content-center">
                   <div class="col-sm-5 col-md-4 col-lg-4 col">
-                    <a
-                      href="/loginView/"
-                      class="btn btn-block rounded-pill custom-color text-black"
-                      >Login</a
-                    >
+                  
+                    <button 
+                    id="login-btn"
+                    class="btn btn-block rounded-pill custom-color text-black">
+                      Login
+                    </button>
+                   
                   </div>
 
                   <div class="col-sm-5 col-md-4 col-lg-4 col">
                     <a
-                      href="/register/"
+                      href="{% url 'seller:register' %}"
                       class="btn btn-block rounded-pill custom-color text-black"
                       >Register</a
                     >
                   </div>
                 </div>
-              </form>
             </div>
           </div>
         </div>

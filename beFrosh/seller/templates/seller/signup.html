@@ -1,6 +1,8 @@
 {% extends 'base.html' %} {% load static %} {% block title %}
 <title>Add New Product</title>
-{% endblock title %} {% block files %} {% endblock files %} {% block content %}
+{% endblock title %} {% block files %}
+<script src="{% static 'seller/js/auth.js' %}" defer></script>
+{% endblock files %} {% block content %}
 <!-- LOGIN SECTION -->
 <div class="container">
   <div class="row justify-content-center">
@@ -11,40 +13,54 @@
             <h1 class="text-center mb-5 custom-link1">
               <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
             </h1>
+            <p id="reg-error-msg" style="color: red; text-align: center;"></p>
             <div class="form-group">
-              <form action="">
+              <form id="register-form">
                 <input
                   class="form-control mb-4 rounded-pill text-center custom-input"
                   type="text"
-                  placeholder="Full name"
+                  placeholder="First Name"
+                  id="first_name"
+                />
+                <input
+                  class="form-control mb-4 rounded-pill text-center custom-input"
+                  type="text"
+                  placeholder="Last Name"
+                  id="last_name"
                 />
                 <input
                   class="form-control mb-4 rounded-pill text-center custom-input"
                   type="email"
                   placeholder="Email"
+                  id="email"
                 />
                 <input
                   class="form-control mb-4 rounded-pill text-center custom-input"
                   type="text"
+                  id="username"
                   placeholder="Username"
                 />
                 <input
                   class="form-control mb-4 rounded-pill text-center custom-input"
                   type="password"
                   placeholder="Password"
+                  id="password"
                 />
                 <input
                   class="form-control mb-4 rounded-pill text-center custom-input"
                   type="password"
                   placeholder="Repeat Password"
+                  id="r_password"
                 />
 
                 <div class="row mt-5 justify-content-center">
                   <div class="col-sm-5 col-md-4 col-lg-4 col m">
-                    <a
+                    <button
+                      id="register"
                       class="btn custom-color text-black btn-block rounded-pill mb-2"
-                      >Register</a
                     >
+                      Register
+                    </button>
                   </div>
 
                   <div class="col-sm-5 col-md-4 col-lg-4 col">

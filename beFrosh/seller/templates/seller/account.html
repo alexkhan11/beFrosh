@@ -1,32 +1,41 @@
 {% extends 'base.html' %} {% load static %} {% block title %}
 <title>profile</title>
-{% endblock title %} {% block files %} {% endblock files %} {% block content %}
+{% endblock title %} {% block files %}
+<script src="{% static 'seller/js/auth.js' %}" defer></script>
+{% endblock files %} {% block content %}
 <header class="header custom-color">
   <div class="toggle-area">
     <!-- toggle button -->
     <i class="fas fa-bars menu"></i>
 
     <!-- ////////////////////////////////// -->
-    <a href="" class="navbar-brand  text-dark">beFrosh</a>
-
+    <a href="" class="navbar-brand text-dark">beFrosh</a>
   </div>
 
   <div class="">
-    <a href="" class="btn btn-outline-light custom-nav-margin rounded-pill "><span
-        class="fa fa-user-circle mr-1 "></span>Porfile </a>
+    <a href="" class="btn btn-outline-light custom-nav-margin rounded-pill"
+      ><span class="fa fa-user-circle mr-1"></span>Porfile
+    </a>
   </div>
-
 </header>
 
-<div class=" home ">
+<div class="home">
   <div class="sidebar custom-color">
-    <a href="" class="mt-3  text-white">Welcome Mr.Ahmad</a>
+    <a href="" class="mt-3 text-white">Welcome {{user_data.first_name}} {{user_data.last_name}}</a>
     <div class="justify-content-center">
-      <ul class="list-unstyled   ">
-        <li><a href="" class="btn text-white mt-3 custom-button">Account Info</a></li>
-        <li><a href="" class="btn text-white mt-3 custom-button">My Listings</a></li>
-        <li><a href="" class="btn text-white mt-3 custom-button">Favorites</a></li>
-        <li><a href="" class="btn text-white mt-3 custom-button">Notifications</a></li>
+      <ul class="list-unstyled">
+        <li>
+          <a href="" class="btn text-white mt-3 custom-button">Account Info</a>
+        </li>
+        <li>
+          <a href="" class="btn text-white mt-3 custom-button">My Listings</a>
+        </li>
+        <li>
+          <a href="" class="btn text-white mt-3 custom-button">Favorites</a>
+        </li>
+        <li>
+          <a href="" class="btn text-white mt-3 custom-button">Notifications</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -34,76 +43,135 @@
   <main class="main">
     <!-- Form -->
     <div class="container">
-
-      <div class="card card-size my-4 custom-login ">
-        <div class="card-body ">
+      <div class="card card-size my-4 custom-login">
+        <div class="card-body">
           <div class="text-center mb-4">
-            <h1 class="m-2"><i class="fa fa-user-circle fa-2x " aria-hidden="true"></i></h1>
-            <a href="" class="custom-link1 custom-link">Upload Photo</a>
+            <h1 class="m-2">
+              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </h1>
+            <label class="custom-link1 custom-link" for="profile-input"
+              >Upload Photo</label
+            >
           </div>
           <div class="row justify-content-center">
-            <div class="col-lg-9 ">
+            <div class="col-lg-9">
               <div class="form-group ml-5 mr-5">
-                <form action="">
-                  <input class="form-control mb-4   rounded-pill text-center custom-input" type="text"
-                    placeholder="Full name">
-                  <input class="form-control mb-4  rounded-pill text-center custom-input" type="email"
-                    placeholder="Email">
-                  <input class="form-control mb-4  rounded-pill text-center custom-input" type="text"
-                    placeholder="Username">
+                <form id="seller-form" enctype="multipart/form-data">
+                  <input style="display: none" type="file" id="profile-input" />
+
+                  <input
+                    value="{{user_data.first_name}} {{user_data.last_name}}"
+                    class="form-control mb-4 rounded-pill text-center custom-input"
+                    type="text"
+                    id="full-name"
+                  />
+                  <input
+                    value="{{user_data.email}}"
+                    class="form-control mb-4 rounded-pill text-center custom-input"
+                    type="email"
+                    id="email"
+                  />
+                  <input
+                    value="{{user_data.username}}"
+                    class="form-control mb-4 rounded-pill text-center custom-input"
+                    type="text"
+                    id="username"
+                  />
 
                   <div class="text-center">
-                    <a href="" class="custom-link custom-link1">Change Password</a>
+                    <a href="" class="custom-link custom-link1"
+                      >Change Password</a
+                    >
                   </div>
+                  <br />
+                  <p
+                    id="update-error-msg"
+                    style="text-align: center; color: red"
+                  ></p>
 
                   <!-- seller info -->
-                  <hr class="hr mb-5 mt-5">
+                  <hr class="hr mb-5 mt-5" />
                   <p class="custom-link1 font-weight-bold">Seller Info</p>
 
-                  <input class="form-control mb-4   rounded-pill text-center custom-input" type="text"
-                    placeholder="Address line,House #">
+                  <input
+                    class="form-control mb-4 rounded-pill text-center custom-input"
+                    type="text"
+                    value="{{seller.address.house_no}}"
+                    placeholder="Address line,House #"
+                    id="house_no"
+                  />
                   <div class="row">
                     <div class="col-md-6">
-                      <input class="form-control mb-4  rounded-pill text-center custom-input" type="text"
-                        placeholder="District">
+                      <input
+                        class="form-control mb-4 rounded-pill text-center custom-input"
+                        type="text"
+                        placeholder="District"
+                        id="district"
+                        value="{{seller.address.district}}"
+                      />
                     </div>
                     <div class="col-md-6">
-                      <input class="form-control mb-4  rounded-pill text-center custom-input" type="text"
-                        placeholder="Region">
+                      <input
+                        class="form-control mb-4 rounded-pill text-center custom-input"
+                        type="text"
+                        id="region"
+                        placeholder="Region"
+                        value="{{seller.address.region}}"
+                      />
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
-                      <input class="form-control mb-4  rounded-pill text-center custom-input" type="text"
-                        placeholder="Province">
+                      <input
+                        class="form-control mb-4 rounded-pill text-center custom-input"
+                        type="text"
+                        id="province"
+                        placeholder="Province"
+                        value="{{seller.address.province}}"
+                      />
                     </div>
                     <div class="col-md-6">
-                      <input class="form-control mb-4  rounded-pill text-center custom-input" type="text"
-                        placeholder="Country">
+                      <input
+                        class="form-control mb-4 rounded-pill text-center custom-input"
+                        type="text"
+                        id="country"
+                        placeholder="Country"
+                        value="{{seller.address.country}}"
+                      />
                     </div>
-
                   </div>
-                  <input class="form-control mb-4   rounded-pill text-center custom-input" type="text"
-                    placeholder="Moblie Phone Number">
-                  <input class="form-control mb-4   rounded-pill text-center custom-input" type="text"
-                    placeholder="WhatsApp Number (optional)">
+                  <input
+                    class="form-control mb-4 rounded-pill text-center custom-input"
+                    type="text"
+                    placeholder="Moblie Phone Number"
+                    id="phone-no"
+                    value="0{{seller.phone_no}}"
+                  />
+                  <input
+                    class="form-control mb-4 rounded-pill text-center custom-input"
+                    type="text"
+                    id="whatsapp-no"
+                    value="0{{seller.whatsapp_no}}"
+                    placeholder="WhatsApp Number (optional)"
+                  />
 
-                  <div class="text-right ">
-                    <a name="" class="btn text-truncate text-light rounded-pill custom-color custom-navbar-margin"
-                      value=" " id="">Update Account</a>
+                  <div class="text-right">
+                    <button
+                      id="update-account-btn"
+                      class="btn text-truncate text-light rounded-pill custom-color custom-navbar-margin"
+                    >
+                      Update Account
+                    </button>
                   </div>
                 </form>
               </div>
             </div>
             <!-- End of Seller info -->
-
           </div>
         </div>
       </div>
     </div>
-
   </main>
 </div>
-
 
 {% endblock content %}

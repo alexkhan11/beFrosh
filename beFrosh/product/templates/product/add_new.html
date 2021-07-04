@@ -1,11 +1,12 @@
 {% extends 'base.html' %} {% load static %} {% block title %}
 <title>Add New Product</title>
-{% endblock title %} {% block files %} {% endblock files %} {% block content %}
+{% endblock title %} {% block files %}
+<script src="{% static 'product/js/product.js' %}" defer></script>
+{% endblock files %} {% block content %}
 
 <header class="header custom-color">
   <div class="toggle-area">
     <i class="fa fa-bars menu" aria-hidden="true"></i>
-    <!-- ////////////////////////////////// -->
     <a href="" class="navbar-brand text-dark">beFrosh</a>
   </div>
 
@@ -66,48 +67,48 @@
           <div class="row justify-content-center">
             <div class="col-lg-9">
               <div class="form-group ml-5 mr-5">
-                <form action="">
+                <form action="" id="product-form">
                   <input
                     class="form-control mb-4 rounded-pill text-center custom-input"
                     type="text"
                     placeholder="Product Title"
+                    id="title"
                   />
                   <input
                     class="form-control mb-4 rounded-pill text-center custom-input"
                     type="email"
                     placeholder="Price $"
+                    id="price"
                   />
                   <input
                     class="form-control mb-4 rounded-pill text-center custom-input"
                     type="text"
                     placeholder="Quantity"
+                    id="quantity"
                   />
                   <input
                     class="form-control mb-4 rounded-pill text-center custom-input"
                     type="text"
                     placeholder="Category"
+                    id="catagory"
                   />
-                  <input
-                    class="form-control mb-4 rounded-pill text-center custom-input"
-                    type="text"
-                    placeholder="Location"
-                  />
+            
                   <textarea
                     cols="400"
                     rows="6"
                     class="form-control mb-4 text- custom-input"
                     type="text"
+                    id="desc"
                     placeholder="More Descritions"
                   ></textarea>
 
                   <div class="text-right">
-                    <a
-                      name=""
+                    <button
                       class="btn pl-4 pr-4 mt-4 text-truncate text-light rounded-pill custom-color custom-navbar-margin"
-                      value=" "
-                      id=""
-                      >Add Product</a
+                      id="add-prodcut"
                     >
+                      Add Product
+                    </button>
                   </div>
                 </form>
               </div>
@@ -118,70 +119,4 @@
     </div>
   </main>
 </div>
-<!-- footer -->
-<footer class="mt-5">
-  <div class="custom-color footer-h">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-          <div class="row">
-            <div class="col-md-6 mt-5 custom-link ml-5">
-              <ul class="list-unstyled">
-                <li class="pb-3">
-                  <a href="#" class="text-white">House Hold</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Vehicles</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Electronics</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Cloths</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Tools</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Furnitures</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Fashion & Beauty</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Books</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-4 mt-5 custom-link ml-5">
-              <ul class="list-unstyled">
-                <li class="pb-3">
-                  <a href="#" class="text-white">About us</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Contact us</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Terms and Conditions</a>
-                </li>
-                <li class="pb-3">
-                  <a href="#" class="text-white">Policies</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <p class="text-white text-center footer-margin pb-2">
-          <i class="fa fa-copyright mr-2" aria-hidden="true"></i>Copy right 2021
-          -beFrosh
-        </p>
-      </div>
-    </div>
-  </div>
-</footer>
-
 {% endblock content %}

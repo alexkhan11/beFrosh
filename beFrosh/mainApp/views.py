@@ -1,16 +1,16 @@
 from django.shortcuts import render
-from product.models import Product
+# from product.models import Product
 
 
 
 def home(request):
 
-    products = Product.objects.all()
-    context = {
-        'products': products
-    }
+    # products = Product.objects.all()
+    # context = {
+    #     'products': products
+    # }
 
-    return render(request, 'mainApp/index.html',context)
+    return render(request, 'mainApp/index.html')
 
 
 # @login_required(login_url='/loginView/')

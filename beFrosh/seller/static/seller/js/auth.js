@@ -4,6 +4,28 @@ const register_form = document.getElementById("register-form");
 const seller_update_btn = document.getElementById("update-account-btn");
 const seller_form = document.getElementById("seller-form");
 
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
+if (login_btn) {
+  login_btn.addEventListener("click", login);
+}
+
 if (register_form) {
   register_form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -20,10 +42,15 @@ if (seller_form) {
 
 function register() {
   const url = "http://127.0.0.1:8000/seller/register/";
+  const csrftoken = getCookie('csrftoken');
   //GIVE FORM NODE IT RETURNS OBJECTS CONTAINING VALUE AS VALUE AND INPUT ID AS PROPERTY
   const data = JSON.stringify(form_data(register_form));
   fetch(url, {
     method: "POST",
+    headers:{
+      'X-CSRFToken': csrftoken,
+      'Accept': 'application/json',
+      },
     body: data,
   })
     .then((jresp) => jresp.json())
@@ -35,9 +62,17 @@ function register() {
 function login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
+  const csrftoken = getCookie('csrftoken');
+
+  console.log("clicked");
+  console.log(csrftoken);
   const data = JSON.stringify({ password: password, username: username });
   const url = "http://127.0.0.1:8000/seller/login/";
   fetch(url, {
+    headers:{
+      'X-CSRFToken': csrftoken,
+      'Accept': 'application/json',
+      },
     body: data,
     method: "POST",
   })
@@ -52,9 +87,19 @@ function login() {
 
 function seller_update() {
   const url = "http://127.0.0.1:8000/seller/become-seller/";
+
+  const csrftoken = getCookie('csrftoken');
+
+  console.log("clicked");
+  console.log(csrftoken);
+
   const data = JSON.stringify(form_data(seller_form));
 
   fetch(url, {
+    headers:{
+      'X-CSRFToken': csrftoken,
+      'Accept': 'application/json',
+      },
     method: "POST",
     body: data,
   })
@@ -80,7 +125,4 @@ function show_message(resp, id) {
   } else {
     window.location = resp["success_url"];
   }
-}
-if (login_btn) {
-  login_btn.addEventListener("click", login);
 }

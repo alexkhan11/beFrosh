@@ -11,23 +11,18 @@ class Location (models.Model):
     street = models.CharField(max_length=128)
     address_line = models.CharField(max_length=128)
 
+    def __str__(self) -> str:
+        addr = self.address_line + " " + self.street + " " + self.region + " " + self.province
+        return addr
+
 class Seller (models.Model):
     photo =  models.ImageField(null=True)
     phone_no = models.IntegerField()
     whatsapp_no = models.IntegerField(null=True)
     rating = models.FloatField()
     user_name = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.ForeignKey(Location, on_delete=CASCADE)
+    address = models.ForeignKey(Location, related_name='Location', on_delete=CASCADE)
 
-# class Seller (models.Model):
-#     photo =  models.ImageField(null=True)
-#     phone = models.IntegerField()
-#     phone_2 = models.IntegerField()
-#     rating = models.FloatField()
-#     root_user = models.OneToOneField(User, on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.user_name
 
-# class Customer (models.Model):
-#     user_name = models.CharField(unique=True, max_length=128)
-#     full_name = models.CharField(max_length=128)
-#     email = models.EmailField()
-#     password = models.CharField(max_length=128)

@@ -1,4 +1,5 @@
 import io
+import json
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -10,6 +11,12 @@ from rest_framework.parsers import JSONParser
 
 from seller.models import Seller, Location
 
+
+
+@login_required(login_url='/seller/login/')
+def logout_(request):
+	logout(request)
+	return HttpResponseRedirect('/seller/login/')
 
 def loginView(request):
 
@@ -48,48 +55,113 @@ def loginView(request):
             print("User is authenticated")
             return HttpResponseRedirect('seller/become-seller/')
 
-    # return render(request, 'seller/login.html')
+@login_required(login_url='/seller/login/')
+def changePassword(request):
 
+	if request.method == 'POST':
+		data = json.loads(request.body)
+		user = request.user
+
+		current_password = data['password']
+		new_password = data['new_password']
+		confirm_password = data['confirm_password']
+
+		if user.check_password(current_password):
+
+			if confirm_password != new_password:
+				msg = "Password didn't Match"
+				return HttpResponse(json.dumps({'success': False, 'message': msg}), status=403)
+
+			else:
+				msg = "Password Changed"
+				user.set_password(new_password)
+
+				return HttpResponse(json.dumps({'success': True, 'message': msg}), status=200)
+
+		else:
+			msg = "Incorrect Password"
+			return HttpResponse(json.dumps({'success': False, 'message': msg}), status=403)
+
+	else: 
+
+		return HttpResponse(status=405)
 
 @login_required(login_url='/seller/login/')
 def createSeller(request):
 
     if request.method == 'GET':
         user = request.user
-
         full_name = user.get_full_name()
-        user_data = {'full_name': full_name, 'email': user.email, 'username': user.username}
+        is_seller = True
 
-        # print(user_data)
+        try:
+            seller = Seller.objects.get(user_name = user)
+            location = seller.address
+        except Seller.DoesNotExist:
+            is_seller = False
+
+        if is_seller:
+            user_data = {
+                'full_name': full_name, 
+                'email': user.email, 
+                'username': user.username,
+                'address_line': location.address_line,
+                'country': location.country,
+                'province': location.province,
+                'region': location.region,
+                'district': location.district,
+                'phone_no': seller.phone_no,
+                'whatsapp_no': seller.whatsapp_no,
+                'rating': seller.rating
+            }
+        else:
+            user_data = {
+                'full_name': full_name, 
+                'email': user.email, 
+                'username': user.username,
+            }
+
         return render(request, 'seller/account.html', context={'user_data': user_data})
 
     elif request.method == 'POST':
 
-        # print(request.body)
-
+        msg = ''
         stream = io.BytesIO(request.body)
         data = JSONParser().parse(stream)
-
         print(data)
+        
+        location_defaults = {
+            'country': data['country'],
+            'province': data['province'],
+            'district': data['district'],
+            'region': data['region'],
+            'address_line': data['address_line']
+        }
 
         try:
-            location = Location(country=data['country'], province=data['province'], 
-                district=data['district'], region=data['region'], address_line=data['address_line'])
-            location.save()
-            print("LOCATION ADDEDD SUCCESS")
+            location, l_created = Location.objects.update_or_create(seller__user_name=request.user, defaults=location_defaults)
+            print("LOCATION ADDEDD SUCCESS", l_created)
         except Exception as e:
             print(e)
 
-
+        seller_defaults = {
+            'photo': None,
+            'phone_no': data['phone_no'],
+            'whatsapp_no': data['whatsapp_no'],
+            'rating': 0,
+            'user_name': request.user,
+            'address' : location
+        }
+        
         try:
-            seller = Seller(photo=None, phone_no=data['phone_no'], whatsapp_no=data['whatsapp_no'], 
-                rating=0, user_name=request.user, address=location)
-            seller.save()
-            print("SELLER ADDEDD SUCCESS")
+            seller, s_created = Seller.objects.update_or_create(user_name=request.user, defaults=seller_defaults)
+            msg = 'Account Updated Successfully'
+            print("SELLER ADDEDD SUCCESS", s_created)
         except Exception as e:
+            msg = 'An Error Occured, Please try agian'
             print(e)
 
-        return HttpResponseRedirect('product/add-listing/')
+        return render(request, 'seller/account.html', context={'Message': msg})
 
 
 def createUser(request):
@@ -98,8 +170,6 @@ def createUser(request):
         return render(request, 'seller/signup.html')
 
     elif request.method == 'POST':
-
-        # print(request.body)
 
         stream = io.BytesIO(request.body)
         data = JSONParser().parse(stream)
@@ -131,6 +201,4 @@ def createUser(request):
         
         return HttpResponseRedirect('/')
 
-
-    # return render(request, 'seller/signup.html')
 

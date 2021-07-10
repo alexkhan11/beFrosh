@@ -16,13 +16,13 @@ class Location (models.Model):
         return addr
 
 class Seller (models.Model):
-    photo =  models.ImageField(null=True)
+    photo =  models.ImageField(null=True, upload_to = 'images', blank=True)
     phone_no = models.IntegerField()
     whatsapp_no = models.IntegerField(null=True)
     rating = models.FloatField()
-    user_name = models.OneToOneField(User, on_delete=models.CASCADE)
-    address = models.ForeignKey(Location, related_name='Location', on_delete=CASCADE)
+    user_name = models.OneToOneField(User, related_name='seller',on_delete=models.CASCADE)
+    address = models.ForeignKey(Location, related_name='seller', on_delete=CASCADE)
 
     def __str__(self) -> str:
-        return self.user_name
+        return self.user_name.get_full_name()
 

@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import Seller, Location
+from seller.models import Seller, Location
 
 class LocationAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(Location, LocationAdmin)
+
+
 
 class SellerAdmin(admin.ModelAdmin):
     pass

@@ -12,17 +12,19 @@ class Location (models.Model):
     address_line = models.CharField(max_length=128)
 
     def __str__(self) -> str:
-        addr = self.address_line + " " + self.street + " " + self.region + " " + self.province
+        addr = f'{self.address_line} {self.street} {self.region} {self.province}'
         return addr
 
+
 class Seller (models.Model):
-    photo =  models.ImageField(null=True, upload_to = 'images', blank=True)
+    photo = models.ImageField(null=True, upload_to='images', blank=True)
     phone_no = models.IntegerField()
     whatsapp_no = models.IntegerField(null=True)
     rating = models.FloatField()
-    user_name = models.OneToOneField(User, related_name='seller',on_delete=models.CASCADE)
-    address = models.ForeignKey(Location, related_name='seller', on_delete=CASCADE)
+    user_name = models.OneToOneField(
+        User, related_name='seller', on_delete=models.CASCADE)
+    address = models.ForeignKey(
+        Location, related_name='seller', on_delete=CASCADE)
 
     def __str__(self) -> str:
         return self.user_name.get_full_name()
-

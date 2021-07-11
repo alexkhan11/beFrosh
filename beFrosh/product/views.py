@@ -1,6 +1,6 @@
 import io
 
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -8,54 +8,41 @@ from django.contrib.auth.decorators import login_required
 
 from rest_framework.parsers import JSONParser
 
-from product.models import Product, ProductImage
+from product.models import Product
+
+
+
 
 @login_required(login_url='/seller/become-seller/')
 def addProduct(request):
-    
+
     user = request.user
 
     if request.method == 'GET':
- 
         user_data = {'full_name': user.get_full_name()}
 
         return render(request, 'product/add_new.html', context={'user_data': user_data})
 
     elif request.method == 'POST':
+        data = request.POST
+        for key in data:
+            if data[key] == '':
 
-        msg = ''
-        stream = io.BytesIO(request.body)
-        data = JSONParser().parse(stream)
-        print(data)
-        
-        product_defaults = {
-            'title': data['title'],
-            'desk': data['desk'],
-            'price': data['price'],
-            'quality': data['quality'],
-            'catagory': data['catagory']
-        }
-
+                resp = {'error': True,
+                        'message': f'{key} Can\'t Be Empty', 'error-key': key}
+                return JsonResponse(resp)
         try:
-            product_, p_created = Product.objects.create(seller=user.seller, defaults=product_defaults)
-            msg = 'PRODUCT ADDEDD SUCCESSFULLY'
-            print(msg, p_created)
+            product_ = Product.objects.create(
+                title=data['title'], desc=data['desc'],
+                price=data['price'], catagory=data['catagory'],
+                image=request.FILES.get('product-pic'),
+                seller=user.seller)
+            product_.save()
+
         except Exception as e:
-            msg = 'PRODUCT NOT ADDEDD'
-            print(e, msg)
+            resp = {'error': True, 'message': 'PRODUCT NOT ADDEDD'}
+            return JsonResponse(resp)
 
-        if p_created:
-
-            image_defaults = {
-                'img': None
-            }
-
-        try:
-            img, i_created = ProductImage.objects.create(product=product_, defaults=image_defaults)
-            msg = 'PRODUCT IMAGES ADDEDD SUCCESSFULLY'
-            print(msg, i_created)
-        except Exception as e:
-            msg = 'PRODUCT IMAGES NOT ADDEDD'
-            print(e, msg)
-
-        return render(request, 'seller/account.html', context={'Message': msg})
+        resp = {'error': False,
+                'message': 'PRODUCT ADDEDD SUCCESSFULLY', "success_url": '/'}
+        return JsonResponse(resp)

@@ -1,0 +1,62 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Add New Product</title>
+{% endblock title %} {% block files %}
+<script src="{% static 'seller/js/auth.js' %}" defer></script>
+{% endblock files %} {% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-10 col-md-9">
+      <div class="card my-5 custom-login">
+        <div class="card-body p-5">
+          <div class="container">
+            <h1 class="text-center mb-5 custom-link1">
+              <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+            </h1>
+
+            <p id="changepass-error" style="color: red; text-align: center"></p>
+            <form action="" id="changepass-form">
+
+                
+            <div class="form-group">
+              <input
+                id="current_password"
+                class="form-control mb-4 rounded-pill text-center custom-input"
+                type="password"
+                placeholder="Current Password"
+              />
+
+              <input
+                class="form-control rounded-pill text-center custom-input"
+                type="password"
+                id="new_password"
+                placeholder="New Password"
+              />
+              <input
+                class="form-control rounded-pill text-center custom-input"
+                type="password"
+                id="confirm_password"
+                placeholder="Confirm Password"
+              />
+
+              <div class="row mt-5 justify-content-center">
+                <div class="col-sm-5 col-md-4 col-lg-4 col">
+                  <button
+                  type="submit"
+                    id="changepass-btn"
+                    class="btn btn-block rounded-pill custom-color text-black"
+                  >
+                    Change
+                  </button>
+                </div>
+              </div>
+
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

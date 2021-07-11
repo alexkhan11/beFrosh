@@ -12,45 +12,42 @@
             <h1 class="text-center mb-5 custom-link1">
               <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
             </h1>
-    
-      <p id="login-error" style="color: red; text-align: center;"></p>
+
+            <p id="login-error" style="color: red; text-align: center"></p>
             <div class="form-group">
-                <input
+              <input
                 id="username"
-                  class="form-control mb-4 rounded-pill text-center custom-input"
-                  type="text"
-                  placeholder="Username"                />
+                class="form-control mb-4 rounded-pill text-center custom-input"
+                type="text"
+                placeholder="Username"
+              />
 
-                <input
-                  class="form-control rounded-pill text-center custom-input"
-                  type="password"
-                  name=""
-                  id="password"
-                  placeholder="Password"
-                />
+              <input
+                class="form-control rounded-pill text-center custom-input"
+                type="password"
+                name=""
+                id="password"
+                placeholder="Password"
+              />
 
-                <div class="row mt-5 justify-content-center">
-                  <div class="col-sm-5 col-md-4 col-lg-4 col">
-                  
-                    <button 
+              <div class="row mt-5 justify-content-center">
+                <div class="col-sm-5 col-md-4 col-lg-4 col">
+                  <button
                     id="login-btn"
-                    
                     class="btn btn-block rounded-pill custom-color text-black"
-                    
-                    >
-                      Login
-                    </button>
-                   
-                  </div>
-
-                  <div class="col-sm-5 col-md-4 col-lg-4 col">
-                    <a
-                      href="{% url 'seller:register' %}"
-                      class="btn btn-block rounded-pill custom-color text-black"
-                      >Register</a
-                    >
-                  </div>
+                  >
+                    Login
+                  </button>
                 </div>
+
+                <div class="col-sm-5 col-md-4 col-lg-4 col">
+                  <a
+                    href="{% url 'seller:register' %}"
+                    class="btn btn-block rounded-pill custom-color text-black"
+                    >Register</a
+                  >
+                </div>
+              </div>
             </div>
           </div>
         </div>

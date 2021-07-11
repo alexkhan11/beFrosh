@@ -13,7 +13,9 @@
   </div>
 
   <div class="">
-    <a href="/seller/logout/" class="btn btn-outline-light custom-nav-margin rounded-pill"
+    <a
+      href="/seller/logout/"
+      class="btn btn-outline-light custom-nav-margin rounded-pill"
       ><span class="fa fa-user-circle mr-1"></span>LOG OUT
     </a>
   </div>
@@ -49,7 +51,7 @@
             <h1 class="m-2">
               <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
             </h1>
-            <label class="custom-link1 custom-link" for="profile-input"
+            <label class="custom-link1 custom-link" for="usrpic"
               >Upload Photo</label
             >
           </div>
@@ -57,7 +59,12 @@
             <div class="col-lg-9">
               <div class="form-group ml-5 mr-5">
                 <form id="seller-form" enctype="multipart/form-data">
-                  <input style="display: " type="file" id="profile_image" name="profile_image" />
+                  <input
+                    style="display: none"
+                    type="file"
+                    id="usrpic"
+                    name="usrpic"
+                  />
 
                   <input
                     value="{{user_data.full_name}}"
@@ -79,7 +86,9 @@
                   />
 
                   <div class="text-center">
-                    <a href="" class="custom-link custom-link1"
+                    <a
+                      href="{% url 'seller:change-password' %}"
+                      class="custom-link custom-link1"
                       >Change Password</a
                     >
                   </div>

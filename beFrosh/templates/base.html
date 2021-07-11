@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% block title %}{% endblock title %}
     <title>Exploring Page</title>
-
+<link rel="shortcut icon" href="{% static 'images/computer.jpg' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
     <link
       rel="stylesheet"
@@ -18,9 +18,9 @@
     <script src="{% static 'js/jquery.js' %}" defer></script>
     <script src="{% static 'js/bootstrap.js' %}" defer></script>
     <script src="{% static 'seller/js/auth.js' %}" defer></script>
+    {% block files %} {% endblock files %}
   </head>
   <body>
-    {% block content %} {% endblock content %}
-    {% include 'footer.html' %}
+    {% block content %} {% endblock content %} {% include 'footer.html' %}
   </body>
 </html>

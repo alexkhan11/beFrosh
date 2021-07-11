@@ -2,9 +2,10 @@ from django.urls import path
 from django.contrib import admin
 from product.views import addProduct
 
-app_name='product'
+app_name = 'product'
 
-urlpatterns=[
+urlpatterns = [
     path('admin/', admin.site.urls),
     path('add-listing/', addProduct, name='add-listing'),
+
 ]

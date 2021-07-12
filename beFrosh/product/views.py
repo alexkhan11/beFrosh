@@ -95,7 +95,4 @@ def favorites(request):
             },
             'pk': fave_product.pk
         })
-    # products = json.dumps(str(products))
-    # ?serializers.serialize('json', products)
-    # print(products)
     return JsonResponse((products), safe=False)

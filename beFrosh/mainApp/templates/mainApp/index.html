@@ -33,7 +33,7 @@
         <input
           type="text"
           id="input"
-          class="form-control rounded-pill text-center"
+          class="form-control rounded-pill text-center main-search"
           placeholder="Search Anything Here..."
         />
       </div>
@@ -52,29 +52,37 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-4 col-lg-2 mb-2">
-        <a class="btn custom-btn rounded-pill col float-left text-truncate"
+        <a
+          catagory="house-hold"
+          class="catagory-btn btn custom-btn rounded-pill col float-left text-truncate"
           ><span class="fa fa-home mr-2"></span>House Hold
         </a>
       </div>
       <div class="col-md-4 col-lg-2 mb-2">
-        <a href="" class="btn custom-btn rounded-pill col float-left"
+        <a
+          catagory="vehicles"
+          class="catagory-btn btn custom-btn rounded-pill col float-left"
           ><span class="fa fa-car mr-3"></span>Vehicles
         </a>
       </div>
       <div class="col-md-4 col-lg-2 mb-2">
         <a
-          href=""
-          class="btn custom-btn rounded-pill col float-left text-truncate"
+          catagory="electronics"
+          class="catagory-btn btn custom-btn rounded-pill col float-left text-truncate"
           ><span class="fa fa-laptop mr-2"></span>Electronics
         </a>
       </div>
       <div class="col-md-4 col-lg-2 mb-2">
-        <a href="" class="btn custom-btn rounded-pill col float-left"
+        <a
+          catagory="cloths"
+          class="catagory-btn btn custom-btn rounded-pill col float-left"
           ><span class="fa fa-tshirt mr-3"></span>Cloths
         </a>
       </div>
       <div class="col-md-4 col-lg-2 mb-2">
-        <a href="" class="btn custom-btn rounded-pill col float-left"
+        <a
+          catagory="tools"
+          class="catagory-btn btn custom-btn rounded-pill col float-left"
           ><span class="fa fa-tools mr-3"></span>Tools
         </a>
       </div>
@@ -82,20 +90,22 @@
     <div class="row justify-content-center mt-1">
       <div class="col-md-4 col-lg-2 mb-2">
         <a
-          href=""
-          class="btn custom-btn rounded-pill col float-left text-truncate"
+          catagory="furnitures"
+          class="catagory-btn btn custom-btn rounded-pill col float-left text-truncate"
           ><span class="fa fa-couch mr-2"></span>Furnitures
         </a>
       </div>
       <div class="col-md-4 col-lg-2 mb-2">
         <a
-          href=""
-          class="btn custom-btn rounded-pill col float-left text-truncate"
+          catagory="fashion-beauty"
+          class="catagory-btn btn custom-btn rounded-pill col float-left text-truncate"
           ><span class="fa fa-female mr-3"></span>Fashion & Beauty
         </a>
       </div>
       <div class="col-md-4 col-lg-2 mb-2">
-        <a href="" class="btn custom-btn rounded-pill col float-left"
+        <a
+          catagory="books"
+          class="catagory-btn btn custom-btn rounded-pill col float-left"
           ><span class="fa fa-book mr-3"></span>Books
         </a>
       </div>
@@ -114,43 +124,46 @@
     </div>
     <br /><br /><br />
 
-    <div class="row">
-      <h1>Hello</h1>
-      {% for product in products %}
-      <div class="col-md-6 col-lg-4">
-        <div class="card mb-3 custom-card-style">
-          <div class="card-img">
-            <img
-              src="{{ product.image.url }}"
-              class="img-fluid card-img-top custom-img"
-              alt=""
-            />
-          </div>
-          <div class="card-body">
-            <a href="" class="custom-link1">
-              <h4 class="card-text">{{ product.title }}</h4>
-              <small class="mb-4"> {{ product.desc }}</small>
-            </a>
-            <h5 class="mt-4 custom-link1">{{product.product_add}}</h5>
-            <a href="" class="h6 custom-link"
-              >Sale by: {{ product.seller.user_name.username }}</a
-            >
-            <div>
-              <button
-                class="check-it-later fa fa-download mr-2 mt-3 float-left custom-link"
-                id="{{product.pk}}"
-              >
-                Check it later
-              </button>
+    <div class="row products-box">
+      <ul>
+        {% for product in products %}
+        <li>
+          <div class="col-md-6 col-lg-4">
+            <div class="card mb-3 custom-card-style">
+              <div class="card-img">
+                <img
+                  src="{{ product.image.url }}"
+                  class="img-fluid card-img-top custom-img"
+                  alt=""
+                />
+              </div>
+              <div class="card-body">
+                <a href="" class="custom-link1">
+                  <h4 class="card-text">{{ product.title }}</h4>
+                  <small class="mb-4"> {{ product.desc }}</small>
+                </a>
+                <h5 class="mt-4 custom-link1">{{product.product_add}}</h5>
+                <a href="" class="h6 custom-link"
+                  >Sale by: {{ product.seller.user_name.username }}</a
+                >
+                <div>
+                  <button
+                    class="check-it-later fa fa-download mr-2 mt-3 float-left custom-link"
+                    id="{{product.pk}}"
+                  >
+                    Check it later
+                  </button>
 
-              <h5 class="float-right mt-3 card-text" style="color: black">
-                {{ product.price }} $
-              </h5>
+                  <h5 class="float-right mt-3 card-text" style="color: black">
+                    {{ product.price }} $
+                  </h5>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      {% endfor %}
+        </li>
+        {% endfor %}
+      </ul>
     </div>
     <div class="float-right">
       <a href="" class="btn btn-custom rounded-pill mt-2 pr-3 pl-3"

@@ -1,15 +1,16 @@
 {% extends 'base.html' %} {% load static %} {% block title %}
-<title>profile</title>
+<title>Profile</title>
 {% endblock title %} {% block files %}
 <script src="{% static 'seller/js/auth.js' %}" defer></script>
+<script src="{% static 'product/js/product.js' %}" defer></script>
 {% endblock files %} {% block content %}
 <header class="header custom-color">
   <div class="toggle-area">
     <!-- toggle button -->
-    <i class="fas fa-bars menu"></i>
+    <i class="fas fa-bars menu" style="color: red;"></i>
 
     <!-- ////////////////////////////////// -->
-    <a href="" class="navbar-brand text-dark">beFrosh</a>
+    <a href="/" class="navbar-brand text-dark">beFrosh</a>
   </div>
 
   <div class="">
@@ -30,10 +31,17 @@
           <a href="" class="btn text-white mt-3 custom-button">Account Info</a>
         </li>
         <li>
-          <a href="" class="btn text-white mt-3 custom-button">My Listings</a>
+          <button
+            class="btn text-white mt-3 custom-button"
+            id="my-listings-btn"
+          >
+            My Listings
+          </button>
         </li>
         <li>
-          <a href="" class="btn text-white mt-3 custom-button">Favorites</a>
+          <button class="btn text-white mt-3 custom-button" id="favorites-btn">
+            Favorites
+          </button>
         </li>
         <li>
           <a href="" class="btn text-white mt-3 custom-button">Notifications</a>
@@ -43,8 +51,16 @@
   </div>
 
   <main class="main">
+    <div class="favorites" style="display: none;">
+      <h1 style="color: black; text-align: center">Your Favorites</h1>
+      <ul></ul>
+    </div>
+    <div class="my-listings" style="display: none">
+      <h1 style="color: black; text-align: center">Your Products</h1>
+      <ul></ul>
+    </div>
     <!-- Form -->
-    <div class="container">
+    <div class="container" id="update-form-container">
       <div class="card card-size my-4 custom-login">
         <div class="card-body">
           <div class="text-center mb-4">

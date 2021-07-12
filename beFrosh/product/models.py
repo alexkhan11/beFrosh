@@ -23,6 +23,14 @@ class Product (models.Model):
 
     def product_add(self):
         add = self.seller.address
-        print(add)
-
         return f'{add.country} {add.province} {add.district} {add.street} {add.region} {add.address_line}'
+
+
+class FaveProduct(models.Model):
+    seller = models.ForeignKey(
+        Seller, related_name='seller', on_delete=CASCADE)
+    product = models.ForeignKey(
+        Product, related_name='product', on_delete=CASCADE)
+
+    def __str__(self):
+        return f'{self.product.title} is Loved By {self.seller.user_name.username}'

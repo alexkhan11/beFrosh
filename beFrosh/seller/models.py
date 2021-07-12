@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import User
 
+# from product.models import Product
+
 
 class Location (models.Model):
     country = models.CharField(max_length=128)
@@ -25,6 +27,5 @@ class Seller (models.Model):
         User, related_name='seller', on_delete=models.CASCADE)
     address = models.ForeignKey(
         Location, related_name='seller', on_delete=CASCADE)
-
     def __str__(self) -> str:
         return self.user_name.get_full_name()

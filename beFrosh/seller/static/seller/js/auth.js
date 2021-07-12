@@ -1,4 +1,4 @@
-const login_btn = document.getElementById("login-btn");
+var loginBtn = document.getElementById("login-btn");
 const register_btn = document.getElementById("register");
 const register_form = document.getElementById("register-form");
 const seller_update_btn = document.getElementById("update-account-btn");
@@ -32,8 +32,8 @@ function form_data(form) {
   return data;
 }
 
-if (login_btn) {
-  login_btn.addEventListener("click", login);
+if (loginBtn) {
+  loginBtn.addEventListener("click", login);
 }
 if (changepass_form) {
   changepass_form.addEventListener("submit", (e) => {

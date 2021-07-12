@@ -1,4 +1,5 @@
 import io
+import json
 
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
@@ -8,9 +9,11 @@ from django.contrib.auth.decorators import login_required
 
 from rest_framework.parsers import JSONParser
 
-from product.models import Product
+from product.models import Product, FaveProduct
+from seller.models import Seller
 
-
+from django.core import serializers
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 @login_required(login_url='/seller/become-seller/')
@@ -46,3 +49,53 @@ def addProduct(request):
         resp = {'error': False,
                 'message': 'PRODUCT ADDEDD SUCCESSFULLY', "success_url": '/'}
         return JsonResponse(resp)
+
+
+@login_required(login_url='/seller/become-seller/')
+def check_it_later(request):
+    if request.user.is_authenticated:
+
+        product_id = json.loads(request.body).get('product_id')
+        product = Product.objects.get(pk=product_id)
+        seller = Seller.objects.get(user_name=request.user)
+        is_fave = FaveProduct.objects.filter(product=product, seller=seller)
+
+        if not is_fave:
+            fave_roduct = FaveProduct.objects.create(
+                product=product, seller=seller)
+            return JsonResponse({'error': False, 'message': 'Added to Favorites'})
+        else:
+            return JsonResponse({'error': True, 'message': 'Already in favorites '})
+
+    return JsonResponse({'error': True})
+
+
+def my_listings(request):
+    user = Seller.objects.get(user_name=request.user)
+    products_set = Product.objects.filter(seller=user)
+    products = serializers.serialize('json', products_set)
+
+    return JsonResponse({'products': products})
+
+
+def favorites(request):
+    user = Seller.objects.get(user_name=request.user)
+    products_set = FaveProduct.objects.filter(seller=user)
+    products = []
+    for fave_product in products_set:
+        products.append({
+            'fields': {
+                'title': fave_product.product.title,
+                'address': fave_product.product.product_add(),
+                'desc': fave_product.product.desc,
+                'price': fave_product.product.price,
+                'seller': fave_product.product.seller.user_name.get_full_name(),
+                'image': fave_product.product.image.name
+
+            },
+            'pk': fave_product.pk
+        })
+    # products = json.dumps(str(products))
+    # ?serializers.serialize('json', products)
+    # print(products)
+    return JsonResponse((products), safe=False)

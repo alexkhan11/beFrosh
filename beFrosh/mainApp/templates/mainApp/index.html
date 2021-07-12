@@ -1,10 +1,14 @@
 {% extends 'base.html' %} {% load static %} {% block title %}
-<title>Add New Product</title>
-{% endblock title %} {% block files %} {% endblock files %} {% block content %}
+<title>Exploring Page</title>
+{% endblock title %} {% block files %}
+
+<script src="{% static 'mainApp/js/index.js' %}" defer></script>
+<script src="{% static 'product/js/product.js' %}" defer></script>
+{% endblock files %} {% block content %}
 <!-- NAVBAR SECTION -->
 <nav class="navbar navbar-expand-lg navbar-light custom-color">
   <div class="container-fluid">
-    <a href="" class="navbar-brand lg">beFrosh</a>
+    <a href="/" class="navbar-brand lg">beFrosh</a>
     <div class="float-right">
       <a
         href="{% url 'seller:become-seller' %}"
@@ -48,8 +52,7 @@
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-4 col-lg-2 mb-2">
-        <a
-          class="btn custom-btn rounded-pill col float-left text-truncate"
+        <a class="btn custom-btn rounded-pill col float-left text-truncate"
           ><span class="fa fa-home mr-2"></span>House Hold
         </a>
       </div>
@@ -113,7 +116,7 @@
 
     <div class="row">
       <h1>Hello</h1>
-      {} {% for product in products %}
+      {% for product in products %}
       <div class="col-md-6 col-lg-4">
         <div class="card mb-3 custom-card-style">
           <div class="card-img">
@@ -125,19 +128,21 @@
           </div>
           <div class="card-body">
             <a href="" class="custom-link1">
-              <h4 class="card-text">{{ product.title }} </h4>
+              <h4 class="card-text">{{ product.title }}</h4>
               <small class="mb-4"> {{ product.desc }}</small>
             </a>
             <h5 class="mt-4 custom-link1">{{product.product_add}}</h5>
             <a href="" class="h6 custom-link"
               >Sale by: {{ product.seller.user_name.username }}</a
             >
-            <div class="">
-              <a href="" class="float-left custom-link">
-                <span class="fa fa-download mr-2 mt-3"></span>
+            <div>
+              <button
+                class="check-it-later fa fa-download mr-2 mt-3 float-left custom-link"
+                id="{{product.pk}}"
+              >
+                Check it later
+              </button>
 
-                <small>Check it later</small>
-              </a>
               <h5 class="float-right mt-3 card-text" style="color: black">
                 {{ product.price }} $
               </h5>

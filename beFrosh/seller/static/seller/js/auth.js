@@ -1,4 +1,4 @@
-var loginBtn = document.getElementById("login-btn");
+const loginBtn = document.getElementById("login-btn");
 const register_btn = document.getElementById("register");
 const register_form = document.getElementById("register-form");
 const seller_update_btn = document.getElementById("update-account-btn");
@@ -7,6 +7,7 @@ const changepass_form = document.getElementById("changepass-form");
 
 function getCookie(name) {
   let cookieValue = null;
+  console.log(document.cookie)
   if (document.cookie && document.cookie !== "") {
     const cookies = document.cookie.split(";");
     for (let i = 0; i < cookies.length; i++) {
@@ -21,7 +22,7 @@ function getCookie(name) {
   return cookieValue;
 }
 
-function form_data(form) {
+function Form_data(form) {
   let data = {};
   for (const inp of form) {
     inp.classList.remove("input-error");
@@ -58,8 +59,9 @@ if (seller_form) {
 function register() {
   const url = "http://127.0.0.1:8000/seller/register/";
   const csrftoken = getCookie("csrftoken");
+  console.log(csrftoken);
   //GIVE FORM NODE IT RETURNS OBJECTS CONTAINING VALUE AS VALUE AND INPUT ID AS PROPERTY
-  const data = JSON.stringify(form_data(register_form));
+  const data = JSON.stringify(Form_data(register_form));
   fetch(url, {
     method: "POST",
     headers: {
@@ -100,7 +102,7 @@ function login() {
 
 function changepass() {
   const csrftoken = getCookie("csrftoken");
-  const data = JSON.stringify(form_data(changepass_form));
+  const data = JSON.stringify(Form_data(changepass_form));
   const url = "http://127.0.0.1:8000/seller/change-password/";
   fetch(url, {
     headers: {
@@ -121,8 +123,7 @@ function changepass() {
 function seller_update() {
   const url = "http://127.0.0.1:8000/seller/become-seller/";
   const csrftoken = getCookie("csrftoken");
-  const data = JSON.stringify(form_data(seller_form));
-
+  const data = JSON.stringify(Form_data(seller_form));
   fetch(url, {
     headers: {
       "X-CSRFToken": csrftoken,
@@ -152,8 +153,6 @@ function update_usrpic() {
     body: f_data,
   });
 }
-
-
 
 function show_message(resp, id) {
   if (resp["error-key"]) {

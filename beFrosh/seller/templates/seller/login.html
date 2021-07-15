@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block title %}
-<title>Login </title>
+<title>Login</title>
 {% endblock title %} {% block files %}
 <script src="{% static 'seller/js/auth.js' %}" defer></script>
 {% endblock files %} {% block content %}
@@ -12,7 +12,7 @@
             <h1 class="text-center mb-5 custom-link1">
               <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
             </h1>
-
+            {% csrf_token %}
             <p id="login-error" style="color: red; text-align: center"></p>
             <div class="form-group">
               <input

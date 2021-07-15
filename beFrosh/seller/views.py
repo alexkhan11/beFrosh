@@ -28,6 +28,7 @@ def loginView(request):
         return render(request, 'seller/login.html')
 
     elif request.method == 'POST':
+        request.META['CSRF_COOKIE_USED']=True
         # stream = io.BytesIO(request.body)
         # data = JSONParser().parse(stream)
         data = json.loads(request.body)
@@ -62,6 +63,7 @@ def changePassword(request):
 
     if request.method == 'GET':
         return render(request, 'seller/changepass.html')
+        
     if request.method == 'POST':
         data = json.loads(request.body)
         user = request.user
@@ -92,42 +94,10 @@ def changePassword(request):
 def createSeller(request):
 
     if request.method == 'GET':
-        user = request.user
-        full_name = user.get_full_name()
-        is_seller = True
-
-        try:
-            seller = Seller.objects.get(user_name=user)
-            location = seller.address
-        except Seller.DoesNotExist:
-            is_seller = False
-
-        if is_seller:
-            user_data = {
-                'full_name': full_name,
-                'email': user.email,
-                'username': user.username,
-                'address_line': location.address_line,
-                'country': location.country,
-                'province': location.province,
-                'region': location.region,
-                'district': location.district,
-                'phone_no': seller.phone_no,
-                'whatsapp_no': seller.whatsapp_no,
-                'rating': seller.rating
-            }
-        else:
-            user_data = {
-                'full_name': full_name,
-                'email': user.email,
-                'username': user.username,
-            }
-
-        return render(request, 'seller/account.html', context={'user_data': user_data})
+        return render(request, 'seller/account.html')
 
     elif request.method == 'POST':
         data = json.loads(request.body)
-
         location_defaults = {
             'country': data['country'],
             'province': data['province'],
@@ -143,22 +113,21 @@ def createSeller(request):
         except Exception as e:
             return JsonResponse({'error': True, "message": 'Location Error'})
 
-        seller_defaults = {
-            'photo': request.user.seller.photo,
-            'phone_no': data['phone_no'],
-            'whatsapp_no': data['whatsapp_no'],
-            'rating': 0,
-            'user_name': request.user,
-            'address': location
-        }
-
         try:
+            user = request.user
+            user.first_name = data['first_name']
+            user.last_name = data['last_name']
+            user.save()
             seller, s_created = Seller.objects.update_or_create(
-                user_name=request.user, defaults=seller_defaults)
+                phone_no=data['phone_no'],
+                whatsapp_no=data['whatsapp_no'],
+                rating=0,
+                address=location,
+                user_name=request.user)
         except Exception as e:
             return JsonResponse({'error': True, "message": 'Seller Error'})
 
-        return JsonResponse({'error': False, "message": 'Status Updated Successfully'})
+        return JsonResponse({'error': False, "message": 'Status Updated Successfully', 'success_url': '/'})
 
 
 def change_usrpic(request):
@@ -168,13 +137,14 @@ def change_usrpic(request):
         file_ext = os.path.splitext(str(request.FILES.get('usrpic')))[1]
         supported_ext = ['.png', '.jpg', '.jpeg']
 
-        if file_ext.lower() in supported_ext:
+        if file_ext.lower() in supported_ext and usrpic is not None:
+
             seller = Seller.objects.get(user_name=request.user)
             seller.photo = usrpic
             seller.save()
             return JsonResponse({'is_updated': True})
-        else:
-            JsonResponse({"is_updated": False})
+
+    return JsonResponse({"is_updated": False})
 
 
 def createUser(request):

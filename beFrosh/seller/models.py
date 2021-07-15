@@ -28,4 +28,4 @@ class Seller (models.Model):
     address = models.ForeignKey(
         Location, related_name='seller', on_delete=CASCADE)
     def __str__(self) -> str:
-        return self.user_name.get_full_name()
+        return f'{self.user_name.first_name} {self.user_name.last_name}'

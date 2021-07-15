@@ -155,7 +155,7 @@ function checkitlater(product_id) {
 
 function add_product() {
   const csrftoken = getCookie("csrftoken");
-  const data = form_data(product_form);
+  const data = product_form_data(product_form);
   const url = "http://127.0.0.1:8000/product/add-listing/";
   fetch(url, {
     body: data,
@@ -180,7 +180,7 @@ function show_message(resp, id) {
   }
 }
 
-function form_data(form) {
+function product_form_data(form) {
   let data = new FormData();
   for (const inp of form) {
     inp.classList.remove("input-error");

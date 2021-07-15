@@ -7,7 +7,7 @@
 <header class="header custom-color">
   <div class="toggle-area">
     <!-- toggle button -->
-    <i class="fas fa-bars menu" style="color: red;"></i>
+    <i class="fas fa-bars menu" style="color: red"></i>
 
     <!-- ////////////////////////////////// -->
     <a href="/" class="navbar-brand text-dark">beFrosh</a>
@@ -24,7 +24,7 @@
 
 <div class="home">
   <div class="sidebar custom-color">
-    <a href="" class="mt-3 text-white">Welcome {{user_data.full_name}}</a>
+    <a href="" class="mt-3 text-white">Welcome {{user.full_name}}</a>
     <div class="justify-content-center">
       <ul class="list-unstyled">
         <li>
@@ -51,7 +51,7 @@
   </div>
 
   <main class="main">
-    <div class="favorites" style="display: none;">
+    <div class="favorites" style="display: none">
       <h1 style="color: black; text-align: center">Your Favorites</h1>
       <ul></ul>
     </div>
@@ -83,22 +83,32 @@
                   />
 
                   <input
-                    value="{{user_data.full_name}}"
+                    value="{{user.first_name}}"
                     class="form-control mb-4 rounded-pill text-center custom-input"
                     type="text"
-                    id="full-name"
+                    id="first_name"
+                    placeholder="First Name"
                   />
                   <input
-                    value="{{user_data.email}}"
+                    value="{{user.last_name}}"
+                    class="form-control mb-4 rounded-pill text-center custom-input"
+                    type="text"
+                    placeholder="Last Name"
+                    id="last_name"
+                  />
+                  <input
+                    value="{{user.email}}"
                     class="form-control mb-4 rounded-pill text-center custom-input"
                     type="email"
+                    placeholder="Email"
                     id="email"
                   />
                   <input
-                    value="{{user_data.username}}"
+                    value="{{user.username}}"
                     class="form-control mb-4 rounded-pill text-center custom-input"
                     type="text"
                     id="username"
+                    placeholder="Username"
                   />
 
                   <div class="text-center">
@@ -121,7 +131,7 @@
                   <input
                     class="form-control mb-4 rounded-pill text-center custom-input"
                     type="text"
-                    value="{{user_data.address_line}}"
+                    value="{{user.seller.address.address_line}}"
                     placeholder="Address line,House #"
                     id="address_line"
                   />
@@ -132,7 +142,7 @@
                         type="text"
                         placeholder="District"
                         id="district"
-                        value="{{user_data.district}}"
+                        value="{{user.seller.address.district}}"
                       />
                     </div>
                     <div class="col-md-6">
@@ -141,7 +151,7 @@
                         type="text"
                         id="region"
                         placeholder="Region"
-                        value="{{user_data.region}}"
+                        value="{{user.seller.address.region}}"
                       />
                     </div>
                   </div>
@@ -152,7 +162,7 @@
                         type="text"
                         id="province"
                         placeholder="Province"
-                        value="{{user_data.province}}"
+                        value="{{user.seller.address.province}}"
                       />
                     </div>
                     <div class="col-md-6">
@@ -161,7 +171,7 @@
                         type="text"
                         id="country"
                         placeholder="Country"
-                        value="{{user_data.country}}"
+                        value="{{user.seller.address.country}}"
                       />
                     </div>
                   </div>
@@ -170,13 +180,13 @@
                     type="text"
                     placeholder="Moblie Phone Number"
                     id="phone_no"
-                    value="0{{user_data.phone_no}}"
+                    value="0{{user.seller.phone_no}}"
                   />
                   <input
                     class="form-control mb-4 rounded-pill text-center custom-input"
                     type="text"
                     id="whatsapp_no"
-                    value="0{{user_data.whatsapp_no}}"
+                    value="0{{user.seller.whatsapp_no}}"
                     placeholder="WhatsApp Number (optional)"
                   />
 
